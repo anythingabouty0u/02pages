@@ -309,6 +309,34 @@
       100%{transform:translateY(0);}
     }
 
+   /* ================= STICKER PNG ================= */
+
+.sticker{
+  width:180px !important;
+  height:auto !important;
+  border:none !important;
+  border-radius:0 !important;
+  background:none !important;
+  box-shadow:none !important;
+
+  animation:stickerFloat 3s ease-in-out infinite;
+}
+
+@keyframes stickerFloat{
+
+  0%{
+    transform:translateY(0) rotate(-5deg);
+  }
+
+  50%{
+    transform:translateY(-15px) rotate(5deg);
+  }
+
+  100%{
+    transform:translateY(0) rotate(-5deg);
+  }
+
+}
     /* ================= GALLERY ================= */
 
     .gallery{
@@ -433,7 +461,30 @@
       margin-top:20px;
       animation:floaty 3s infinite;
     }
+.tower{
+  position:absolute;
+  bottom:0;
+  right:20px;
+  width:220px;
+  opacity:.9;
+  animation:towerFloat 4s ease-in-out infinite;
+}
 
+@keyframes towerFloat{
+
+  0%{
+    transform:translateY(0);
+  }
+
+  50%{
+    transform:translateY(-15px);
+  }
+
+  100%{
+    transform:translateY(0);
+  }
+
+}
   </style>
 </head>
 
@@ -518,6 +569,8 @@
             class="gif"
             src="https://media.tenor.com/qNBS4xV8zXAAAAAM/love-bear.gif"
           >
+
+         <img class="tower" src="tower.png">
 
         </div>
 
