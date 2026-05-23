@@ -1,0 +1,910 @@
+<!-- =========================
+ FILE: index.html
+ PINK COQUETTE WEBSITE
+ ========================= -->
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>for my love ♡</title>
+
+<!-- FONT -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Pacifico&display=swap" rel="stylesheet">
+
+<!-- SWIPER -->
+<link
+rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Poppins',sans-serif;
+  overflow:hidden;
+  background:linear-gradient(135deg,#ffd6ea,#fff);
+  color:#ff4f9a;
+}
+
+/* ================= LOADING ================= */
+
+#loadingScreen{
+  position:fixed;
+  inset:0;
+  background:linear-gradient(135deg,#ffd6ea,#fff);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  z-index:99999;
+}
+
+.heart-loader{
+  width:120px;
+  height:120px;
+  background:#ff4f9a;
+  transform:rotate(-45deg);
+  position:relative;
+  animation:pulse 1s infinite;
+}
+
+.heart-loader::before,
+.heart-loader::after{
+  content:'';
+  width:120px;
+  height:120px;
+  background:#ff4f9a;
+  border-radius:50%;
+  position:absolute;
+}
+
+.heart-loader::before{
+  top:-60px;
+  left:0;
+}
+
+.heart-loader::after{
+  left:60px;
+  top:0;
+}
+
+@keyframes pulse{
+  0%{
+    transform:rotate(-45deg) scale(1);
+  }
+
+  50%{
+    transform:rotate(-45deg) scale(1.1);
+  }
+
+  100%{
+    transform:rotate(-45deg) scale(1);
+  }
+}
+
+#loadingText{
+  margin-top:40px;
+  font-size:20px;
+  text-align:center;
+  font-weight:600;
+}
+
+#percent{
+  margin-top:15px;
+  font-size:25px;
+  font-weight:bold;
+}
+
+/* ================= PASSWORD ================= */
+
+#passwordScreen{
+  position:fixed;
+  inset:0;
+  display:none;
+  justify-content:center;
+  align-items:center;
+
+  background:
+  linear-gradient(rgba(255,255,255,.5),rgba(255,255,255,.5)),
+  url('https://i.pinimg.com/originals/8f/54/3e/8f543eb0dcf7b6c9f9f93f43dc0d6f62.gif');
+
+  background-size:cover;
+  z-index:9999;
+}
+
+.password-box{
+  background:rgba(255,255,255,.7);
+  backdrop-filter:blur(10px);
+
+  padding:40px;
+  width:320px;
+
+  border-radius:30px;
+
+  text-align:center;
+
+  box-shadow:0 0 25px rgba(255,105,180,.4);
+}
+
+.password-box h1{
+  font-family:'Pacifico',cursive;
+  margin-bottom:15px;
+}
+
+.password-box input{
+  width:100%;
+  padding:14px;
+
+  border:none;
+  outline:none;
+
+  border-radius:20px;
+
+  margin-top:15px;
+}
+
+.password-box button{
+  margin-top:20px;
+
+  padding:12px 30px;
+
+  border:none;
+  border-radius:20px;
+
+  background:#ff69b4;
+  color:white;
+
+  cursor:pointer;
+}
+
+/* ================= MAIN ================= */
+
+#mainContent{
+  display:none;
+  width:100%;
+  height:100vh;
+}
+
+/* ================= HEART ================= */
+
+.heart{
+  position:fixed;
+  color:pink;
+  pointer-events:none;
+  z-index:999;
+  animation:floatHeart linear infinite;
+}
+
+@keyframes floatHeart{
+
+  from{
+    transform:translateY(100vh);
+    opacity:1;
+  }
+
+  to{
+    transform:translateY(-100vh);
+    opacity:0;
+  }
+
+}
+
+/* ================= HEART RAIN GIF ================= */
+
+.heart-rain{
+  position:fixed;
+  top:-100px;
+  width:40px;
+  pointer-events:none;
+  z-index:999;
+  animation:rain linear forwards;
+}
+
+@keyframes rain{
+
+  from{
+    transform:translateY(-100px) rotate(0deg);
+    opacity:1;
+  }
+
+  to{
+    transform:translateY(120vh) rotate(360deg);
+    opacity:0;
+  }
+
+}
+
+/* ================= SWIPER ================= */
+
+.swiper{
+  width:100%;
+  height:100vh;
+}
+
+.swiper-slide{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+
+  padding:30px;
+
+  position:relative;
+  overflow:hidden;
+
+  text-align:center;
+}
+
+.slide-bg{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,#ffe1ef,#fff);
+  z-index:-2;
+}
+
+.blur-circle{
+  position:absolute;
+
+  width:300px;
+  height:300px;
+
+  background:rgba(255,192,203,.4);
+
+  border-radius:50%;
+
+  filter:blur(100px);
+
+  z-index:-1;
+
+  animation:blob 10s infinite alternate;
+}
+
+@keyframes blob{
+
+  from{
+    transform:translate(-50px,-50px);
+  }
+
+  to{
+    transform:translate(50px,50px);
+  }
+
+}
+
+.title{
+  font-size:55px;
+  font-family:'Pacifico',cursive;
+  margin-bottom:20px;
+
+  animation:fadeUp 1s;
+}
+
+.desc{
+  max-width:700px;
+  line-height:1.8;
+  font-size:18px;
+
+  animation:fadeUp 1.5s;
+}
+
+@keyframes fadeUp{
+
+  from{
+    opacity:0;
+    transform:translateY(40px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+}
+
+/* ================= STICKER ================= */
+
+.stickers{
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+  justify-content:center;
+
+  margin-top:30px;
+}
+
+.sticker{
+  width:180px;
+  height:auto;
+
+  animation:stickerFloat 3s ease-in-out infinite;
+}
+
+@keyframes stickerFloat{
+
+  0%{
+    transform:translateY(0) rotate(-5deg);
+  }
+
+  50%{
+    transform:translateY(-15px) rotate(5deg);
+  }
+
+  100%{
+    transform:translateY(0) rotate(-5deg);
+  }
+
+}
+
+/* ================= GALLERY ================= */
+
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+
+  gap:20px;
+
+  width:100%;
+  max-width:1000px;
+
+  margin-top:30px;
+}
+
+.gallery img{
+  width:100%;
+  height:250px;
+
+  object-fit:cover;
+
+  border-radius:25px;
+
+  transition:.4s;
+}
+
+.gallery img:hover{
+  transform:scale(1.05);
+}
+
+/* ================= LETTER ================= */
+
+.letter-container{
+  perspective:1000px;
+}
+
+.letter-box{
+  background:rgba(255,255,255,.5);
+
+  padding:30px;
+
+  border-radius:30px;
+
+  max-width:900px;
+
+  line-height:2;
+
+  backdrop-filter:blur(10px);
+
+  transform:rotateX(90deg);
+  opacity:0;
+
+  animation:openLetter 2s ease forwards;
+}
+
+@keyframes openLetter{
+
+  0%{
+    transform:rotateX(90deg) scale(.8);
+    opacity:0;
+  }
+
+  60%{
+    transform:rotateX(-10deg) scale(1.03);
+    opacity:1;
+  }
+
+  100%{
+    transform:rotateX(0deg) scale(1);
+    opacity:1;
+  }
+
+}
+
+/* ================= GIF ================= */
+
+.gif{
+  width:220px;
+  margin-top:20px;
+
+  animation:stickerFloat 3s infinite;
+}
+
+/* ================= GAME ================= */
+
+.game{
+  display:flex;
+  gap:25px;
+
+  margin-top:30px;
+
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.card{
+  width:140px;
+  height:140px;
+
+  background:white;
+
+  border-radius:30px;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  font-size:55px;
+
+  cursor:pointer;
+
+  transition:.3s;
+}
+
+.card:hover{
+  transform:translateY(-10px) scale(1.05);
+}
+
+#gameResult{
+  margin-top:25px;
+  font-size:22px;
+  font-weight:bold;
+}
+
+/* ================= MUSIC ================= */
+
+.music-btn{
+  position:fixed;
+  top:20px;
+  right:20px;
+
+  width:60px;
+  height:60px;
+
+  border:none;
+  border-radius:50%;
+
+  background:#ff69b4;
+  color:white;
+
+  font-size:25px;
+
+  cursor:pointer;
+
+  z-index:9999;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ================= LOADING ================= -->
+
+<div id="loadingScreen">
+
+  <div class="heart-loader"></div>
+
+  <div id="loadingText">
+    RASA CINTAKU DAN SAYANGKU KE KAMU 💗
+  </div>
+
+  <div id="percent">0%</div>
+
+</div>
+
+<!-- ================= PASSWORD ================= -->
+
+<div id="passwordScreen">
+
+  <div class="password-box">
+
+    <h1>Welcome My Love ♡</h1>
+
+    <p>masukin password dulu yaa</p>
+
+    <input
+    type="password"
+    id="passwordInput"
+    placeholder="password..."
+    >
+
+    <button onclick="checkPassword()">
+      OPEN ♡
+    </button>
+
+  </div>
+
+</div>
+
+<!-- ================= MUSIC ================= -->
+
+<audio id="bgMusic" autoplay loop>
+  <source src="music.mp3" type="audio/mp3">
+</audio>
+
+<!-- ================= MAIN ================= -->
+
+<div id="mainContent">
+
+<button class="music-btn" onclick="toggleMusic()">
+  ♫
+</button>
+
+<div class="swiper mySwiper">
+
+<div class="swiper-wrapper">
+
+<!-- ================= SLIDE 1 ================= -->
+
+<div class="swiper-slide">
+
+<div class="slide-bg"></div>
+<div class="blur-circle"></div>
+
+<h1 class="title">
+  hii sayangg ♡
+</h1>
+
+<p class="desc">
+  isi kata kata kamu di sini nanti 💖
+</p>
+
+<img
+class="gif"
+src="https://media.tenor.com/qNBS4xV8zXAAAAAM/love-bear.gif"
+>
+
+</div>
+
+<!-- ================= SLIDE 2 ================= -->
+
+<div class="swiper-slide">
+
+<div class="slide-bg"></div>
+
+<h1 class="title">
+  our cute stickers ♡
+</h1>
+
+<div class="stickers">
+
+  <!-- FOTO KALIAN -->
+  <img class="sticker" src="sticker1.png">
+
+  <img class="sticker" src="sticker2.png">
+
+  <img class="sticker" src="sticker3.png">
+
+  <!-- TOWER -->
+  <img class="sticker" src="tower.png">
+
+</div>
+
+</div>
+
+<!-- ================= SLIDE 3 ================= -->
+
+<div class="swiper-slide">
+
+<div class="slide-bg"></div>
+
+<h1 class="title">
+  our gallery ♡
+</h1>
+
+<div class="gallery">
+
+  <img src="gallery1.jpg">
+  <img src="gallery2.jpg">
+  <img src="gallery3.jpg">
+  <img src="gallery4.jpg">
+  <img src="gallery5.jpg">
+  <img src="gallery6.jpg">
+
+</div>
+
+</div>
+
+<!-- ================= SLIDE 4 ================= -->
+
+<div class="swiper-slide">
+
+<div class="slide-bg"></div>
+
+<h1 class="title">
+  letter for u ♡
+</h1>
+
+<div class="letter-container">
+
+<div class="letter-box">
+
+ISI SURAT PANJANG KAMU DI SINI 💌
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= SLIDE 5 ================= -->
+
+<div class="swiper-slide">
+
+<div class="slide-bg"></div>
+
+<h1 class="title">
+  choose one ♡
+</h1>
+
+<p class="desc">
+  pilih salah satunya 😭
+</p>
+
+<div class="game">
+
+<div class="card" onclick="game('bom')">
+💣
+</div>
+
+<div class="card" onclick="game('love')">
+💖
+</div>
+
+<div class="card" onclick="game('broken')">
+💔
+</div>
+
+</div>
+
+<div id="gameResult"></div>
+
+</div>
+
+<!-- ================= SLIDE 6 ================= -->
+
+<div class="swiper-slide">
+
+<div class="slide-bg"></div>
+
+<h1 class="title">
+  forever ♡
+</h1>
+
+<p class="desc">
+  forever and ever.
+</p>
+
+<img
+class="gif"
+src="https://media.tenor.com/0AVbKGY_MxMAAAAM/milk-and-mocha.gif"
+>
+
+</div>
+
+</div>
+
+<div class="swiper-pagination"></div>
+
+</div>
+
+</div>
+
+<!-- SWIPER -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+
+/* ================= LOADING ================= */
+
+let percent = 0;
+
+const loading = setInterval(()=>{
+
+  percent++;
+
+  document.getElementById('percent').innerHTML =
+  percent + "%";
+
+  if(percent >= 100){
+
+    clearInterval(loading);
+
+    setTimeout(()=>{
+
+      document.getElementById('loadingScreen').style.display='none';
+
+      document.getElementById('passwordScreen').style.display='flex';
+
+    },500);
+
+  }
+
+},40);
+
+/* ================= PASSWORD ================= */
+
+function checkPassword(){
+
+  const password =
+  document.getElementById('passwordInput').value;
+
+  if(password === "02042025"){
+
+    document.getElementById('passwordScreen').style.display='none';
+
+    document.getElementById('mainContent').style.display='block';
+
+    createHearts();
+    createHeartRain();
+
+    document.body.style.overflow='auto';
+
+  }else{
+
+    alert("password salah 😭");
+
+  }
+
+}
+
+/* ================= HEART ================= */
+
+function createHearts(){
+
+  setInterval(()=>{
+
+    const heart =
+    document.createElement('div');
+
+    heart.classList.add('heart');
+
+    heart.innerHTML='💖';
+
+    heart.style.left =
+    Math.random()*100 + "vw";
+
+    heart.style.fontSize =
+    Math.random()*25 + 15 + "px";
+
+    heart.style.animationDuration =
+    Math.random()*3 + 3 + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+
+      heart.remove();
+
+    },6000);
+
+  },300);
+
+}
+
+/* ================= HEART GIF RAIN ================= */
+
+function createHeartRain(){
+
+  setInterval(()=>{
+
+    const gif =
+    document.createElement("img");
+
+    gif.src =
+    "https://media.tenor.com/n7QYqH8O7LQAAAAi/pink-heart.gif";
+
+    gif.classList.add("heart-rain");
+
+    gif.style.left =
+    Math.random()*100 + "vw";
+
+    gif.style.width =
+    Math.random()*30 + 25 + "px";
+
+    gif.style.animationDuration =
+    Math.random()*3 + 4 + "s";
+
+    document.body.appendChild(gif);
+
+    setTimeout(()=>{
+
+      gif.remove();
+
+    },7000);
+
+  },250);
+
+}
+
+/* ================= MUSIC ================= */
+
+const music =
+document.getElementById('bgMusic');
+
+function toggleMusic(){
+
+  if(music.paused){
+
+    music.play();
+
+  }else{
+
+    music.pause();
+
+  }
+
+}
+
+/* ================= GAME ================= */
+
+function game(type){
+
+  const result =
+  document.getElementById('gameResult');
+
+  if(type === "bom"){
+
+    result.innerHTML =
+    "YAHH KENAAA BOM 💣";
+
+  }
+
+  else if(type === "love"){
+
+    result.innerHTML =
+    "YEAYYY DAPET CINTAAA 💖";
+
+  }
+
+  else{
+
+    result.innerHTML =
+    "JANGAN PATAH HATI DONGGG 💔";
+
+  }
+
+}
+
+/* ================= SWIPER ================= */
+
+const swiper = new Swiper(".mySwiper",{
+
+  direction:"horizontal",
+
+  loop:true,
+
+  speed:1200,
+
+  effect:"slide",
+
+  pagination:{
+    el:".swiper-pagination",
+  },
+
+  mousewheel:true,
+
+});
+
+</script>
+
+</body>
+</html>
